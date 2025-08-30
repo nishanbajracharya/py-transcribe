@@ -1,6 +1,9 @@
 # py-transcribe
 A python project to transcribe and generate srt subtitle files for foreign language videos powered by ffmpeg and [Whisper](https://github.com/openai/whisper). It transcribes two subtitle files: one matcing the original video language and another translated to english.
 
+## Requirements
+This project depends on `ffmpeg` and `openai-whisper`. `ffmpeg` binaries should be installed manually before running this project.
+
 ## Usage
 Run the `main.py` file with the following arguments:
 
