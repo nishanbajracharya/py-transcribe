@@ -12,8 +12,7 @@ def transcribe_audio(audio_file: str, lang: str):
         lang (str): The language of the source audio file
 
     Returns:
-        tuple: A tuple containing the English text (str), the
-               Original text (str) and the full transcription/translation
+        dict: The full transcription/translation
                result dictionary (dict).
     """
     try:
@@ -26,15 +25,6 @@ def transcribe_audio(audio_file: str, lang: str):
         original_language_result = model.transcribe(
             audio_file, language=lang, fp16=False, verbose=False
         )
-        original_language_text = original_language_result["text"]
-
-        # Translate the audio to English.
-        print("Translating to English...")
-        # verbose=False enables the progress bar during translation
-        english_result = model.transcribe(
-            audio_file, language=lang, fp16=False, task="translate", verbose=False
-        )
-        english_text = english_result["text"]
 
         # Save the Original transcription as an SRT file.
         output_directory = "./"
@@ -43,11 +33,18 @@ def transcribe_audio(audio_file: str, lang: str):
             original_language_result, audio_file.replace(".wav", "-" + lang)
         )
 
+        # Translate the audio to English.
+        print("Translating to English...")
+        # verbose=False enables the progress bar during translation
+        english_result = model.transcribe(
+            audio_file, language=lang, fp16=False, task="translate", verbose=False
+        )
+
         # Save the English translation as an SRT file.
         english_srt_writer = get_writer("srt", output_directory)
         english_srt_writer(english_result, audio_file.replace(".wav", "-en"))
 
-        return english_text, original_language_text, english_result
+        return english_result
     except Exception as e:
         print(f"Error during transcription and translation: {e}")
         raise
