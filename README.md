@@ -27,7 +27,7 @@ Here `ko` refers to Korean language aka Hanguel. Refer to [Whisper Tokenizer fil
 python main.py tv-01-09.mp4 es
 ```
 
-This will output the following files in the project folder:
+This will output the following files in the source video folder:
 
 ```sh
 tv-01-09-es.srt
