@@ -30,6 +30,6 @@ python main.py tv-01-09.mp4 es
 This will output the following files in the project folder:
 
 ```sh
-tv-01-09.es.srt
-tv-01-09.en.srt
+tv-01-09-es.srt
+tv-01-09-en.srt
 ```
