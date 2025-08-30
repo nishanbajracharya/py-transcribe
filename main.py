@@ -43,7 +43,7 @@ def main():
 
         # Step 2: Transcribe the extracted audio using Whisper
         print("Transcribing audio...")
-        transcription_result = transcribe_audio(audio_file, lang)
+        transcribe_audio(audio_file, lang)
 
         # Step 3: Print that final transcription is completed
         print("\n--- Transcription Completed ---")
