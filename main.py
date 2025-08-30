@@ -14,16 +14,29 @@ def main():
         description="Transcribe a video file to text using FFmpeg and Whisper."
     )
     parser.add_argument(
-        "video_file", help="The path to the source video file to be transcribed."
+        "-v",
+        "--video_file",
+        help="The path to the source video file to be transcribed.",
+        required=True
     )
     parser.add_argument(
-        "language", help="The language of the source video file to be transcribed."
+        "-l",
+        "--language",
+        help="The language of the source video file to be transcribed. Defaults to English ('en').",
+        default="en"
+    )
+    parser.add_argument(
+        "-m",
+        "--model",
+        help="The whisper model to use for transcription. Options include 'tiny', 'base', 'small', 'medium', and 'large'. Defaults to 'small'.",
+        default="small"
     )
 
     # Parse the arguments provided by the user
     args = parser.parse_args()
     video_file: str = args.video_file
-    lang: str = args.language or "en"
+    lang: str = args.language
+    model: str = args.model
 
     # Check if the video file exists
     if not os.path.exists(video_file):
@@ -44,7 +57,7 @@ def main():
 
         # Step 2: Transcribe the extracted audio using Whisper
         print("Transcribing audio...")
-        transcribe_audio(audio_file, lang, directory)
+        transcribe_audio(audio_file, lang, directory, model)
 
         # Step 3: Print that final transcription is completed
         print("\n--- Transcription Completed ---")

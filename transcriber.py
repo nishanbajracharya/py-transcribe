@@ -2,22 +2,23 @@ import whisper
 from whisper.utils import get_writer
 
 
-def transcribe_audio(audio_file: str, lang: str, directory: str = "."):
+def transcribe_audio(audio_file: str, lang: str = "en", directory: str = ".", modelName: str = "small") -> dict[str, str | list]:
     """
     Transcribes a Original audio file and translates it to English,
     saving both as separate SRT files.
 
     Args:
         audio_file (str): The path to the audio file.
-        lang (str): The language of the source audio file
+        lang (str): The language of the source audio file. Defaults to "en".
+        directory (str): The directory to save the SRT files. Defaults to the current directory.
+        modelName (str): The Whisper model to use for transcription. Defaults to "small".
 
     Returns:
-        dict: The full transcription/translation
-               result dictionary (dict).
+        dict[str, str | list]: The full transcription/translation result dictionary.
     """
     try:
         # Load the small Whisper model.
-        model = whisper.load_model("small")
+        model = whisper.load_model(modelName)
 
         # Transcribe the audio in Original language.
         print("Transcribing in Original...")
@@ -32,6 +33,11 @@ def transcribe_audio(audio_file: str, lang: str, directory: str = "."):
         original_srt_writer(
             original_language_result, audio_file.replace(".wav", "-" + lang)
         )
+
+
+        if (lang == "en"):
+            print("Source language is English. Skipping translation step.")
+            return original_language_result
 
         # Translate the audio to English.
         print("Translating to English...")

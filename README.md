@@ -8,15 +8,18 @@ This project depends on `ffmpeg` and `openai-whisper`. `ffmpeg` binaries should 
 Run the `main.py` file with the following arguments:
 
 ```sh
-positional arguments:
-  video_file  The path to the source video file to be transcribed.
-  language    The language of the source video file to be transcribed.
+-v VIDEO_FILE, --video_file VIDEO_FILE
+    The path to the source video file to be transcribed.
+-l LANGUAGE, --language LANGUAGE
+    The language of the source video file to be transcribed. Defaults to English ('en').
+-m MODEL, --model MODEL
+    The whisper model to use for transcription. Options include 'tiny', 'base', 'small', 'medium', and 'large'. Defaults to 'small'.
 ```
 
 ### Example
 
 ```sh
-python main.py /path/to/file ko
+python main.py -v /path/to/file -l ko -m small
 ```
 
 Here `ko` refers to Korean language aka Hanguel. Refer to [Whisper Tokenizer file](https://github.com/openai/whisper/blob/main/whisper/tokenizer.py) for available languages and codes.
@@ -24,7 +27,7 @@ Here `ko` refers to Korean language aka Hanguel. Refer to [Whisper Tokenizer fil
 ### Another example with output files
 
 ```sh
-python main.py tv-01-09.mp4 es
+python main.py -v tv-01-09.mp4 -l es -m large
 ```
 
 This will output the following files in the source video folder:
