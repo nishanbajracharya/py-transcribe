@@ -40,12 +40,12 @@ def transcribe_audio(audio_file: str, lang: str):
         output_directory = "./"
         original_srt_writer = get_writer("srt", output_directory)
         original_srt_writer(
-            original_language_result, audio_file.replace(".wav", "." + lang)
+            original_language_result, audio_file.replace(".wav", "-" + lang)
         )
 
         # Save the English translation as an SRT file.
         english_srt_writer = get_writer("srt", output_directory)
-        english_srt_writer(english_result, audio_file.replace(".wav", ".en"))
+        english_srt_writer(english_result, audio_file.replace(".wav", "-en"))
 
         return english_text, original_language_text, english_result
     except Exception as e:
