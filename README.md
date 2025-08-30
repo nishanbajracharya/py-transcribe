@@ -19,7 +19,7 @@ positional arguments:
 python main.py /path/to/file ko
 ```
 
-Here `ko` refers to Korean language aka Hanguel. Refer to [Whisper](https://github.com/openai/whisper) for available languages and codes.
+Here `ko` refers to Korean language aka Hanguel. Refer to [Whisper Tokenizer file](https://github.com/openai/whisper/blob/main/whisper/tokenizer.py) for available languages and codes.
 
 ### Another example with output files
 
