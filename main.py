@@ -34,7 +34,8 @@ def main():
 
     # Generate a temporary audio file name based on the video file's name
     base_name = os.path.splitext(os.path.basename(video_file))[0]
-    audio_file = f"{base_name}.wav"
+    directory = os.path.dirname(os.path.abspath(video_file))
+    audio_file = os.path.join(directory, f"{base_name}.wav")
 
     try:
         # Step 1: Extract audio from the video file
@@ -43,7 +44,7 @@ def main():
 
         # Step 2: Transcribe the extracted audio using Whisper
         print("Transcribing audio...")
-        transcribe_audio(audio_file, lang)
+        transcribe_audio(audio_file, lang, directory)
 
         # Step 3: Print that final transcription is completed
         print("\n--- Transcription Completed ---")
