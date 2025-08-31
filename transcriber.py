@@ -2,7 +2,7 @@ import whisper
 from whisper.utils import get_writer
 
 
-def transcribe_audio(audio_file: str, lang: str = "en", directory: str = ".", modelName: str = "small") -> dict[str, str | list]:
+def transcribe_audio(audio_file: str, lang: str = "en", directory: str = ".", modelName: str = "small"):
     """
     Transcribes a Original audio file and translates it to English,
     saving both as separate SRT files.
