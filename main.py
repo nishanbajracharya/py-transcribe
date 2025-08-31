@@ -14,10 +14,8 @@ def main():
         description="Transcribe a video file to text using FFmpeg and Whisper."
     )
     parser.add_argument(
-        "-v",
-        "--video_file",
-        help="The path to the source video file to be transcribed.",
-        required=True
+        "video_file",
+        help="The path to the source video file to be transcribed."
     )
     parser.add_argument(
         "-l",
